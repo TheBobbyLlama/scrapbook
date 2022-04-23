@@ -1,16 +1,70 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+	--brand-color: #8060c0;
+	--brand-color-dark: #6860a0;
+	--brand-color-highlight: #a080e0;
+	--card-color-background: #f0f0f0;
+	--card-color-text: black;
+	--outer-color-text: #404040;
+	--ui-border-radius: 4px;
+	--ui-height: 32px;
+	--ui-padding: 4px 12px;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+button {
+	background-color: var(--brand-color);
+	border: none;
+	border-radius: var(--ui-border-radius);
+	color: white;
+	cursor: pointer;
+	font-size: 1em;
+	height: var(--ui-height);
+	padding: var(--ui-padding);
+	transition: background-color 0.25s;
+}
+
+button:hover {
+	background-color: var(--brand-color-highlight);
+}
+
+a:link {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	text-align: center;
+}
+
+* + p,
+p + * {
+	margin-top: 10px;
+}
+
+.brand {
+	color: var(--brand-color);
+	font-weight: bold;
+}
+
+.centerText {
+	text-align: center;
 }
