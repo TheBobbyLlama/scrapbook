@@ -1,8 +1,12 @@
+import { MongoClient } from "mongodb";
+
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home(props) {
+	console.log(props);
+
 	return (
 		<main className={styles.main}>
 			<Head>
@@ -33,7 +37,7 @@ export default function Home() {
 					</div>
 				</section>
 				<section className={styles.card}>
-					<h2>Recent Albums</h2>
+					<h2>Latest Albums</h2>
 				</section>
 			</div>
 		</main>
@@ -41,8 +45,30 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
-	// TODO - Pull in most recent items!!!
-	return {
-		props: {},
-	};
+	try {
+		const client = await MongoClient.connect(process.env.MONGODB_URI);
+
+		const db = client.db();
+
+		const yourCollection = db.collection("albums");
+
+		// TODO - Pull in 5? most recent items!!!
+		const latest = await yourCollection.find().toArray();
+
+		client.close();
+
+		return {
+			props: {
+				latest,
+			},
+		};
+	} catch (e) {
+		console.error(e);
+		return {
+			props: {
+				error: e.message,
+				latest: [],
+			},
+		};
+	}
 }
