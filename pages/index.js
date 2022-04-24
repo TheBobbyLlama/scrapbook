@@ -1,12 +1,11 @@
 import { MongoClient } from "mongodb";
 
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home(props) {
-	console.log(props);
-
 	return (
 		<main className={styles.main}>
 			<Head>
@@ -33,7 +32,9 @@ export default function Home(props) {
 						that you can use to share with friends and family, or edit it later.
 					</p>
 					<div className="centerText">
-						<button>Start a Scrapbook!</button>
+						<Link href="/create" passHref>
+							<button className="btn">Start a Scrapbook!</button>
+						</Link>
 					</div>
 				</section>
 				<section className={styles.card}>

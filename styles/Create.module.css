@@ -1,0 +1,56 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.header {
+	align-items: center;
+	border-bottom: solid 2px var(--brand-color);
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 12px;
+}
+
+.title {
+	border: none;
+	border-radius: 0;
+	color: var(--brand-color-dark);
+	flex-grow: 1;
+	font-size: 1.5em;
+	font-weight: bold;
+	height: auto;
+	margin: 0 12px;
+	text-align: center;
+}
+
+.title:focus {
+	color: var(--brand-color);
+}
+
+.title:hover {
+	color: var(--brand-color-highlight);
+}
+
+.workArea {
+	align-items: flex-start;
+	background-color: var(--work-color);
+	display: flex;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+	padding: 10px 20px;
+}
+
+@media screen and (max-width: 800px) {
+	.header {
+		flex-wrap: wrap;
+	}
+
+	.title {
+		margin: 8px 0 0 0;
+		order: 1;
+		width: 100%;
+	}
+}
