@@ -50,10 +50,10 @@ export async function getServerSideProps() {
 
 		const db = client.db();
 
-		const yourCollection = db.collection("albums");
+		const albums = db.collection("albums");
 
 		// TODO - Pull in 5? most recent items!!!
-		const latest = await yourCollection.find().toArray();
+		const latest = await albums.find().toArray();
 
 		client.close();
 
