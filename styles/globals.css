@@ -8,6 +8,10 @@
 	--outer-color-text: #404040;
 	--work-color: silver;
 	--ui-border-radius: 4px;
+	--ui-album-item-size: 300px;
+	--ui-album-section-add-color: #f0f0f0;
+	--ui-album-section-border-radius: 8px;
+	--ui-album-section-padding: 10px 20px;
 	--ui-height: 32px;
 	--ui-padding: 4px 12px;
 }
@@ -109,7 +113,7 @@ h2.brand {
 	position: relative;
 	width: 80px;
 	height: 80px;
-	margin: 40px;
+	margin: 40px auto;
 	transform: rotate(45deg);
 	transform-origin: 40px 40px;
 }

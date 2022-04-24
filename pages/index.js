@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "../components/Logo";
 import styles from "../styles/Home.module.css";
 
 export default function Home(props) {
@@ -11,9 +12,10 @@ export default function Home(props) {
 			<Head>
 				<title>My Scrapbook</title>
 				<meta name="description" content="A free online scrapbook creator!" />
-				<link rel="icon" href="/favicon.png" />
+				<link rel="icon" href="/Logo.png" />
 			</Head>
 
+			<Logo size="200px" />
 			<header className={styles.header}>
 				<h1>
 					Welcome to My <span className="brand">Scrapbook</span> Site!
@@ -32,7 +34,7 @@ export default function Home(props) {
 						that you can use to share with friends and family, or edit it later.
 					</p>
 					<div className="centerText">
-						<Link href="/create" passHref>
+						<Link href="/build" passHref>
 							<button className="btn">Start a Scrapbook!</button>
 						</Link>
 					</div>

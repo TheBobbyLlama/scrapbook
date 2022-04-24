@@ -1,0 +1,31 @@
+.addSection {
+	align-items: center;
+	animation: appear 0.5s ease-in-out;
+	border: dashed 8px var(--ui-album-section-add-color);
+	border-radius: var(--ui-album-section-border-radius);
+	color: var(--ui-album-section-add-color);
+	cursor: pointer;
+	display: flex;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.25rem;
+	font-weight: bold;
+	justify-content: center;
+	padding: var(--ui-album-section-padding);
+	transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+	width: 100%;
+}
+
+.addSection:hover {
+	background-color: var(--brand-color);
+	border-color: white;
+	color: white;
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

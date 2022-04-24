@@ -1,0 +1,6 @@
+.logo {
+	background: url("../public/Logo.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: inline-block;
+}
