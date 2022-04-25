@@ -27,12 +27,18 @@ export const albumSlice = createSlice({
 					0,
 					action.payload.section
 				);
+
 				delete state.value.saved;
 			}
 		},
 		removeSection: (state, action) => {
 			state.value.sections.splice(action.sectionIndex, 1);
 			delete state.value.saved;
+		},
+		setSectionTitle: (state, action) => {
+			console.log(action);
+			state.value.sections[action.payload.sectionIndex].title =
+				action.payload.title;
 		},
 	},
 });
@@ -44,6 +50,7 @@ export const {
 	setTitle,
 	insertSection,
 	removeSection,
+	setSectionTitle,
 } = albumSlice.actions;
 
 export default albumSlice.reducer;

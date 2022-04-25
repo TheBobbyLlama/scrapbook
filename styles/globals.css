@@ -6,10 +6,13 @@
 	--card-color-text: black;
 	--disabled-color: #e0e0e0;
 	--outer-color-text: #404040;
-	--work-color: silver;
+	--work-color: #a0a0a0;
 	--ui-border-radius: 4px;
+	--ui-album-item-add-color: silver;
+	--ui-album-item-background-color: var(--card-color-background);
 	--ui-album-item-size: 300px;
 	--ui-album-section-add-color: #f0f0f0;
+	--ui-album-section-background-color: white;
 	--ui-album-section-border-radius: 8px;
 	--ui-album-section-padding: 10px 20px;
 	--ui-height: 32px;
@@ -31,6 +34,22 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: "Montserrat", sans-serif;
+	text-align: center;
+}
+
+* + p,
+p + * {
+	margin-top: 10px;
+}
+
+/* UTILITY CLASSES */
 
 .btn {
 	background-color: var(--brand-color);
@@ -61,7 +80,7 @@ body {
 	font-size: 1em;
 	height: var(--ui-height);
 	padding: var(--ui-padding);
-	transition: border-color 0.25s, color 0.25s;
+	transition: background-color 0.25s, border-color 0.25s, color 0.25s;
 }
 
 .text:hover {
@@ -74,22 +93,25 @@ body {
 	outline: none;
 }
 
+.text.in-place {
+	background-color: rgba(255, 255, 255, 0.25);
+	border: none;
+	color: var(--brand-color-dark);
+	height: auto;
+}
+
+.text.in-place:focus {
+	background-color: white;
+	color: var(--brand-color);
+}
+
+.text.in-place:hover {
+	background-color: rgba(255, 255, 255, 0.25);
+	color: var(--brand-color-highlight);
+}
+
 a:link {
 	text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-	font-family: "Montserrat", sans-serif;
-	text-align: center;
-}
-
-* + p,
-p + * {
-	margin-top: 10px;
 }
 
 .brand {
@@ -105,6 +127,32 @@ h2.brand {
 
 .centerText {
 	text-align: center;
+}
+
+/* REUSABLE CLASSES */
+.albumSection {
+	align-items: flex-start;
+	animation: appear 0.5s ease-in-out;
+	background-color: white;
+	border-radius: var(--ui-album-section-border-radius);
+	display: flex;
+	flex-wrap: wrap;
+	font-family: "Quicksand", sans-serif;
+	justify-content: center;
+	padding: var(--ui-album-section-padding);
+	transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+	width: 100%;
+}
+
+.albumSection > h2 {
+	font-size: 1.25rem;
+	text-align: center;
+	width: 100%;
+}
+
+.albumCard {
+	height: var(--ui-album-item-size);
+	width: var(--ui-album-item-size);
 }
 
 /* Adapted from https://loading.io/css/ */
@@ -152,5 +200,14 @@ h2.brand {
 	}
 	100% {
 		transform: scale(0.9);
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }

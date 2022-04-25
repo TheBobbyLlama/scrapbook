@@ -10,10 +10,10 @@ export default function BuildArea() {
 
 	return (
 		<section className={styles.buildArea}>
-			{albumData.sections.map((_, index) => (
-				<EditSection key={"section" + index} index={index} />
+			<AddSection index={0} />
+			{albumData.sections.map((section, index) => (
+				<EditSection key={"section" + section.id} index={index} />
 			))}
-			<AddSection index={albumData.sections.length} />
 		</section>
 	);
 }

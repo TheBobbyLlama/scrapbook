@@ -34,6 +34,11 @@ export default function CreateAlbum() {
 		dispatch(setTitle(e.target.value));
 	};
 
+	const canSave =
+		!albumData?.saved &&
+		albumData?.title &&
+		albumData?.sections.some((section) => section.items.length);
+
 	return (
 		<main className={styles.main}>
 			<Head>
@@ -49,14 +54,14 @@ export default function CreateAlbum() {
 				</h2>
 				{albumData && (
 					<input
-						className={"text " + styles.title}
+						className={"text in-place " + styles.title}
 						type="text"
 						maxLength={50}
 						value={albumData.title}
 						onChange={changeTitle}
 					></input>
 				)}
-				<button className="btn" disabled={albumData?.saved}>
+				<button className="btn" disabled={!canSave}>
 					Save
 				</button>
 			</header>

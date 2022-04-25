@@ -21,23 +21,11 @@
 }
 
 .title {
-	border: none;
-	border-radius: 0;
-	color: var(--brand-color-dark);
 	flex-grow: 1;
 	font-size: 1.5em;
 	font-weight: bold;
-	height: auto;
 	margin: 0 12px;
 	text-align: center;
-}
-
-.title:focus {
-	color: var(--brand-color);
-}
-
-.title:hover {
-	color: var(--brand-color-highlight);
 }
 
 @media screen and (max-width: 800px) {
