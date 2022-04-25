@@ -10,6 +10,8 @@
 	--ui-border-radius: 4px;
 	--ui-album-item-add-color: silver;
 	--ui-album-item-background-color: var(--card-color-background);
+	--ui-album-item-border-radius: 6px;
+	--ui-album-item-padding: 10px;
 	--ui-album-item-size: 300px;
 	--ui-album-section-add-color: #f0f0f0;
 	--ui-album-section-background-color: white;
@@ -138,6 +140,7 @@ h2.brand {
 	display: flex;
 	flex-wrap: wrap;
 	font-family: "Quicksand", sans-serif;
+	gap: 10px;
 	justify-content: center;
 	padding: var(--ui-album-section-padding);
 	transition: background-color 0.25s, border-color 0.25s, color 0.25s;

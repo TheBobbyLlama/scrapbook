@@ -21,6 +21,10 @@
 	color: white;
 }
 
+.addSection:active {
+	background-color: white;
+}
+
 @keyframes appear {
 	0% {
 		opacity: 0;

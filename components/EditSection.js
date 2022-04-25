@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeSection, setSectionTitle } from "../redux/albumSlice";
 
 import AddSection from "./AddSection";
+import AddItem from "./AddItem";
 
 import styles from "../styles/EditSection.module.css";
 
@@ -25,6 +26,11 @@ export default function EditSection({ index }) {
 						}}
 					/>
 				</h2>
+				<AddItem
+					index={0}
+					sectionIndex={index}
+					minimal={albumData.sections[index].items.length}
+				/>
 			</section>
 			<AddSection index={index + 1} />
 		</>

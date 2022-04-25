@@ -1,0 +1,52 @@
+.addItem {
+	align-items: center;
+	border: dashed 6px var(--ui-album-item-add-color);
+	border-radius: var(--ui-album-item-border-radius);
+	color: var(--ui-album-item-add-color);
+	cursor: pointer;
+	display: flex;
+	font-size: 1.25em;
+	font-weight: bold;
+	height: var(--ui-album-item-size);
+	max-width: var(--ui-album-item-size);
+	justify-content: center;
+	padding: 10px 20px;
+	transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+	width: 100%;
+}
+
+.addItem:hover {
+	background-color: var(--brand-color);
+	border-color: white;
+	color: white;
+}
+
+.addItem:active {
+	background-color: white;
+}
+
+.addItemMinimal {
+	font-size: 1.5em;
+	width: auto;
+}
+
+.addItem:not(.addItemMinimal) {
+	animation: appear 0.5s ease-in-out;
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	/* Change orientation from vertical to horizontal */
+	.addItemMinimal {
+		height: auto;
+		width: 100%;
+	}
+}
