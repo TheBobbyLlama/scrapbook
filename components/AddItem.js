@@ -1,4 +1,5 @@
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { modalKeys, setModal } from "../redux/modalSlice";
 
 import styles from "../styles/AddItem.module.css";
 
@@ -9,8 +10,9 @@ export default function AddItem({ index, sectionIndex, minimal }) {
 		<div
 			className={styles.addItem + " " + (minimal && styles.addItemMinimal)}
 			onClick={() => {
-				// TODO!
-				//dispatch();
+				dispatch(
+					setModal({ key: modalKeys.addItem, props: { index, sectionIndex } })
+				);
 			}}
 		>
 			{minimal ? "+" : "Add Item"}
