@@ -16,13 +16,19 @@
 
 .header h2 {
 	align-items: center;
+	cursor: pointer;
 	display: flex;
 	gap: 4px;
 }
 
+.headerButtons {
+	display: flex;
+	gap: 10px;
+}
+
 .title {
 	flex-grow: 1;
-	font-size: 1.5em;
+	font-size: 1.5em !important;
 	font-weight: bold;
 	margin: 0 12px;
 	text-align: center;

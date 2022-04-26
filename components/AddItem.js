@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { modalKeys, setModal } from "../redux/modalSlice";
+import { modalKeys } from "../lib/globals";
+import { setModal } from "../redux/modalSlice";
 
 import styles from "../styles/AddItem.module.css";
 

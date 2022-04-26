@@ -10,24 +10,22 @@ export default function Home(props) {
 	return (
 		<main className={styles.main}>
 			<Head>
-				<title>My Scrapbook</title>
-				<meta name="description" content="A free online scrapbook creator!" />
-				<link rel="icon" href="/Logo.png" />
+				<title>Cherish</title>
 			</Head>
 
 			<Logo size="200px" />
 			<header className={styles.header}>
 				<h1>
-					Welcome to My <span className="brand">Scrapbook</span> Site!
+					Welcome to <span className="brand">Cherish</span>!
 				</h1>
 			</header>
 			<div className={styles.cardHolder}>
 				<section className={styles.card}>
 					<h2>Get Started Now!</h2>
 					<p>
-						My <span className="brand">Scrapbook</span> Site is <em>free</em>{" "}
-						and there&apos;s <em>no sign up</em> &mdash; you can begin building
-						your scrapbook immediately!
+						<span className="brand">Cherish</span> is <em>free</em> and
+						there&apos;s <em>no sign up</em> &mdash; you can begin building your
+						scrapbook immediately!
 					</p>
 					<p>
 						Once you have made a scrapbook of your own, you will receive a link

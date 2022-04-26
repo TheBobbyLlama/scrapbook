@@ -36,9 +36,9 @@ export const albumSlice = createSlice({
 			delete state.value.saved;
 		},
 		setSectionTitle: (state, action) => {
-			console.log(action);
 			state.value.sections[action.payload.sectionIndex].title =
 				action.payload.title;
+			delete state.value.saved;
 		},
 	},
 });

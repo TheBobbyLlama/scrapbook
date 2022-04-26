@@ -1,6 +1,6 @@
 :root {
 	--brand-color: #8060c0;
-	--brand-color-dark: #6860a0;
+	--brand-color-dark: #7060a0;
 	--brand-color-highlight: #a080e0;
 	--card-color-background: #f0f0f0;
 	--card-color-text: black;
@@ -154,8 +154,42 @@ h2.brand {
 }
 
 .albumCard {
+	background-color: var(--ui-album-item-background-color);
+	border-radius: var(--ui-album-item-border-radius);
 	height: var(--ui-album-item-size);
+	padding: var(--ui-album-item-padding);
 	width: var(--ui-album-item-size);
+}
+
+.modalBG {
+	align-items: center;
+	animation: appear 0.25s ease-in-out;
+	background-color: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.modal-generic {
+	align-items: center;
+	background-color: var(--ui-album-section-background-color);
+	border-radius: var(--ui-album-section-border-radius);
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+	max-width: 400px;
+	padding: var(--ui-album-section-padding);
+	width: calc(100% - 40px);
+}
+
+.modal-generic > div {
+	display: flex;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 /* Adapted from https://loading.io/css/ */

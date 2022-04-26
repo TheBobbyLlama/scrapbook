@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const modalKeys = {
-	addItem: "ADD_ITEM",
-};
-
 export const modalSlice = createSlice({
 	name: "modal",
 	initialState: {

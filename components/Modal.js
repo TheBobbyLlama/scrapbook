@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from "../redux/modalSlice";
 
-import { modalKeys } from "../redux/modalSlice";
+import { modalKeys } from "../lib/globals";
 
 import ModalAddItem from "./ModalAddItem";
-
-import styles from "../styles/Modal.module.css";
+import { ModalUnsavedChanges } from "../pages/build";
 
 export default function Modal() {
 	const { key, props } = useSelector((state) => state.modal);
@@ -22,14 +21,24 @@ export default function Modal() {
 	switch (key) {
 		case modalKeys.addItem:
 			modalGen = ModalAddItem;
+			break;
+		case modalKeys.unsavedChanges:
+			modalGen = ModalUnsavedChanges;
+			break;
 		default:
 			break;
 	}
 
 	if (modalGen) {
 		return (
-			<div className={styles.modalBG} onClick={bgClick}>
-				{modalGen(props)}
+			<div className="modalBG" onClick={bgClick}>
+				<div
+					onClick={(e) => {
+						e.stopPropagation();
+					}}
+				>
+					{modalGen(props)}
+				</div>
 			</div>
 		);
 	} else {

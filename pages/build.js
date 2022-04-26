@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { setAlbumData, markSaved, setTitle } from "../redux/albumSlice";
+import { modalKeys } from "../lib/globals";
+import { setModal } from "../redux/modalSlice";
 
 import Head from "next/head";
 import Logo from "../components/Logo";
@@ -10,6 +13,13 @@ import styles from "../styles/Build.module.css";
 export default function CreateAlbum() {
 	const albumData = useSelector((state) => state.album.value);
 	const dispatch = useDispatch();
+	const router = useRouter();
+
+	const hasData =
+		albumData?.title &&
+		albumData?.sections.some((section) => section.items.length);
+	const canShare = albumData?.saved && hasData;
+	const canSave = !albumData?.saved && hasData;
 
 	useEffect(() => {
 		const query = new URLSearchParams(window.location.search);
@@ -30,27 +40,33 @@ export default function CreateAlbum() {
 		}
 	}, [dispatch]);
 
+	const clickBrandNav = () => {
+		if (hasData) {
+			dispatch(
+				setModal({
+					key: modalKeys.unsavedChanges,
+				})
+			);
+		} else {
+			router.push("/");
+		}
+	};
+
 	const changeTitle = (e) => {
 		dispatch(setTitle(e.target.value));
 	};
-
-	const canSave =
-		!albumData?.saved &&
-		albumData?.title &&
-		albumData?.sections.some((section) => section.items.length);
 
 	return (
 		<main className={styles.main}>
 			<Head>
 				<title>
-					My Scrapbook - {albumData?.title ? albumData.title : "New Album"}
+					Cherish - {albumData?.title ? albumData.title : "New Album"}
 				</title>
-				<link rel="icon" href="/Logo.png" />
 			</Head>
 			<header className={styles.header}>
-				<h2 className="brand">
+				<h2 className="brand" onClick={clickBrandNav}>
 					<Logo size="1em" />
-					Scrapbook
+					Cherish
 				</h2>
 				{albumData && (
 					<input
@@ -61,9 +77,14 @@ export default function CreateAlbum() {
 						onChange={changeTitle}
 					></input>
 				)}
-				<button className="btn" disabled={!canSave}>
-					Save
-				</button>
+				<div className={styles.headerButtons}>
+					<button className="btn" disabled={!canShare}>
+						Share
+					</button>
+					<button className="btn" disabled={!canSave}>
+						Save
+					</button>
+				</div>
 			</header>
 			{albumData ? (
 				<BuildArea albumData={albumData} />
@@ -75,3 +96,38 @@ export default function CreateAlbum() {
 		</main>
 	);
 }
+
+const ModalUnsavedChanges = () => {
+	const dispatch = useDispatch();
+	const router = useRouter();
+
+	return (
+		<div className="modal-generic">
+			<h2>Confirm</h2>
+			<p>You have unsaved work. Are you sure you want to leave this page?</p>
+			<div>
+				<button
+					className="btn"
+					onClick={() => {
+						router.push("/");
+						dispatch(setModal());
+					}}
+				>
+					Yes
+				</button>
+				<button
+					className="btn"
+					onClick={() => {
+						dispatch(setModal());
+					}}
+				>
+					No
+				</button>
+			</div>
+		</div>
+	);
+};
+
+ModalUnsavedChanges.canCancel = true;
+
+export { ModalUnsavedChanges };

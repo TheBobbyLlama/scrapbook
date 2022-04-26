@@ -1,7 +1,7 @@
 .addSection {
 	align-items: center;
 	animation: appear 0.5s ease-in-out;
-	border: dashed 8px var(--ui-album-section-add-color);
+	border: dashed 6px var(--ui-album-section-add-color);
 	border-radius: var(--ui-album-section-border-radius);
 	color: var(--ui-album-section-add-color);
 	cursor: pointer;
