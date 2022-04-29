@@ -10,26 +10,26 @@ export default function Modal() {
 	const { key, props } = useSelector((state) => state.modal);
 	const dispatch = useDispatch();
 
+	let ModalGen;
+
 	const bgClick = () => {
-		if (modalGen.canCancel) {
+		if (!ModalGen.noCancel) {
 			dispatch(setModal());
 		}
 	};
 
-	let modalGen;
-
 	switch (key) {
 		case modalKeys.addItem:
-			modalGen = ModalAddItem;
+			ModalGen = ModalAddItem;
 			break;
 		case modalKeys.unsavedChanges:
-			modalGen = ModalUnsavedChanges;
+			MdalGen = ModalUnsavedChanges;
 			break;
 		default:
 			break;
 	}
 
-	if (modalGen) {
+	if (ModalGen) {
 		return (
 			<div className="modalBG" onClick={bgClick}>
 				<div
@@ -37,7 +37,7 @@ export default function Modal() {
 						e.stopPropagation();
 					}}
 				>
-					{modalGen(props)}
+					<ModalGen {...props} />
 				</div>
 			</div>
 		);

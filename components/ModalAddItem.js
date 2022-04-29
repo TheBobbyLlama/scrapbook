@@ -1,9 +1,45 @@
+import { useEffect } from "react";
+import useFormData from "../hooks/useFormData";
+
+import { Select, Option } from "./ui/Select";
+
+import { albumItemSelectors } from "../lib/globals";
 //import styles from "../styles/ModalAddItem.module.css";
 
 const ModalAddItem = ({ index, sectionIndex }) => {
-	return <div className="albumCard">Hello World!</div>;
-};
+	const [formData, handleChange, updateFormData] = useFormData({
+		itemType: 0,
+	});
 
-ModalAddItem.canCancel = true;
+	let SelectorComponent = albumItemSelectors[formData.itemType].component;
+
+	const selectItemValue = (value) => {
+		updateFormData({ value });
+	};
+
+	return (
+		<form className="modal-generic">
+			<h3>Add New Item</h3>
+			<Select
+				name="itemType"
+				selectedIndex={formData.itemType}
+				onChange={(e) => {
+					handleChange(e);
+					updateFormData({ value: null });
+				}}
+			>
+				{albumItemSelectors.map((item) => {
+					return <Option key={item.key}>{item.key}</Option>;
+				})}
+			</Select>
+			<SelectorComponent value={formData.value} onSelect={selectItemValue} />
+			<div>
+				<button type="submit" className="btn" disabled={!formData.value}>
+					Add
+				</button>
+			</div>
+		</form>
+	);
+};
 
 export default ModalAddItem;

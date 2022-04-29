@@ -75,6 +75,33 @@ p + * {
 	pointer-events: none;
 }
 
+.select {
+	border: solid 2px rgba(128, 128, 128, 0.5);
+	border-radius: var(--ui-border-radius);
+	cursor: pointer;
+	font-family: "Quicksand", sans-serif;
+	font-size: 1em;
+	height: var(--ui-height);
+	transition: border-color 0.25s, color 0.25s;
+}
+
+.select:hover {
+	border-color: var(--brand-color-highlight);
+	color: var(--brand-color-dark);
+}
+
+.select:focus,
+.select.focus {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-color: var(--brand-color-highlight);
+}
+
+.select:focus-visible {
+	color: var(--brand-color-dark);
+	outline: none;
+}
+
 .text {
 	border: solid 2px var(--brand-color);
 	border-radius: var(--ui-border-radius);
@@ -181,15 +208,29 @@ h2.brand {
 	display: flex;
 	flex-direction: column;
 	margin: 20px;
-	max-width: 400px;
+	max-width: 300px;
 	padding: var(--ui-album-section-padding);
-	width: calc(100% - 40px);
+	width: calc(100vw - 40px);
 }
 
 .modal-generic > div {
 	display: flex;
 	gap: 10px;
 	margin-top: 20px;
+}
+
+.modal-generic > h1,
+.modal-generic > h2,
+.modal-generic > h3,
+.modal-generic > h4,
+.modal-generic > h5 {
+	color: var(--brand-color-dark);
+}
+
+.modal-generic > input,
+.modal-generic > .select {
+	margin-top: 4px;
+	width: 100%;
 }
 
 /* Adapted from https://loading.io/css/ */

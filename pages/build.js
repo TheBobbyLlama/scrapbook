@@ -128,6 +128,4 @@ const ModalUnsavedChanges = () => {
 	);
 };
 
-ModalUnsavedChanges.canCancel = true;
-
 export { ModalUnsavedChanges };
