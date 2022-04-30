@@ -1,0 +1,53 @@
+:root {
+	--theme-dark-background: #202020;
+	--theme-dark-button-disabled: #606060;
+	--theme-dark-button-disabled-text: #808080;
+	--theme-dark-control: #101010;
+	--theme-dark-section-cutout: #a0a0a0;
+	--theme-dark-text: #e0e0e0;
+	--theme-dark-title: var(--brand-color);
+	--theme-dark-workarea: black;
+	--theme-dark-workarea-cutout: gray;
+}
+
+.darkTheme .themeStandard,
+.darkTheme .themeBordered {
+	background-color: var(--theme-dark-background);
+	color: var(--theme-dark-text);
+}
+
+.darkTheme .themeTitle {
+	color: var(--theme-dark-title);
+}
+
+.darkTheme .themeControl {
+	background-color: var(--theme-dark-control);
+	color: var(--theme-dark-text);
+}
+
+.darkTheme .themeSectionCutout {
+	border-color: var(--theme-dark-section-cutout);
+	color: var(--theme-dark-section-cutout);
+}
+
+.darkTheme .themeSectionCutout:hover {
+	background-color: var(--brand-color-dark);
+}
+
+.darkTheme .themeWorkArea {
+	background-color: var(--theme-dark-workarea);
+}
+
+.darkTheme .themeWorkAreaCutout {
+	border-color: var(--theme-dark-workarea-cutout);
+	color: var(--theme-dark-workarea-cutout);
+}
+
+.darkTheme .themeWorkAreaCutout:hover {
+	background-color: var(--brand-color-dark);
+}
+
+.darkTheme .btn[disabled] {
+	background-color: var(--theme-dark-button-disabled);
+	color: var(--theme-dark-button-disabled-text);
+}

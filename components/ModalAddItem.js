@@ -18,10 +18,11 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 	};
 
 	return (
-		<form className="modal-generic">
-			<h3>Add New Item</h3>
+		<form className="modal-generic themeStandard">
+			<h3 className="themeTitle">Add New Item</h3>
 			<Select
 				name="itemType"
+				className="themeControl"
 				selectedIndex={formData.itemType}
 				onChange={(e) => {
 					handleChange(e);

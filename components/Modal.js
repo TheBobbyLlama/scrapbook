@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from "../redux/modalSlice";
 
-import { modalKeys } from "../lib/globals";
+import { modalKeys, themes } from "../lib/globals";
 
 import ModalAddItem from "./ModalAddItem";
 import { ModalUnsavedChanges } from "../pages/build";
 
 export default function Modal() {
-	const { key, props } = useSelector((state) => state.modal);
+	const { key, props, theme } = useSelector((state) => state.modal);
 	const dispatch = useDispatch();
 
 	let ModalGen;
@@ -23,15 +23,23 @@ export default function Modal() {
 			ModalGen = ModalAddItem;
 			break;
 		case modalKeys.unsavedChanges:
-			MdalGen = ModalUnsavedChanges;
+			ModalGen = ModalUnsavedChanges;
 			break;
 		default:
 			break;
 	}
 
+	const themeIndex = Math.max(
+		themes.findIndex((curTheme) => curTheme.name === theme),
+		0
+	);
+
 	if (ModalGen) {
 		return (
-			<div className="modalBG" onClick={bgClick}>
+			<div
+				className={`modalBG ${themes[themeIndex].className}`}
+				onClick={bgClick}
+			>
 				<div
 					onClick={(e) => {
 						e.stopPropagation();

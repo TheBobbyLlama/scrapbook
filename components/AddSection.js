@@ -8,7 +8,7 @@ export default function AddSection({ index }) {
 
 	return (
 		<div
-			className={styles.addSection}
+			className={`${styles.addSection} themeWorkAreaCutout`}
 			onClick={() => {
 				dispatch(
 					insertSection({

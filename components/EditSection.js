@@ -12,11 +12,11 @@ export default function EditSection({ index }) {
 
 	return (
 		<>
-			<section className="albumSection">
+			<section className="albumSection themeStandard">
 				<h2>
 					<input
 						type="text"
-						className={"text in-place " + styles.title}
+						className={"text in-place themeTitle " + styles.title}
 						value={albumData.sections[index].title}
 						maxLength={50}
 						onChange={(e) => {

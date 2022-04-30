@@ -25,6 +25,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	transition: background-color 0.25s, color 0.25s;
 }
 
 html,
@@ -123,14 +124,14 @@ p + * {
 }
 
 .text.in-place {
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(255, 255, 255, 0.0625);
 	border: none;
 	color: var(--brand-color-dark);
 	height: auto;
 }
 
 .text.in-place:focus {
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.25);
 	color: var(--brand-color);
 }
 
@@ -152,6 +153,12 @@ a:link {
 
 h2.brand {
 	font-size: 1.5em;
+}
+
+header .brand {
+	border-radius: 19px;
+	height: 38px;
+	padding: 0 12px;
 }
 
 .centerText {

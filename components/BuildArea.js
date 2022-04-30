@@ -9,7 +9,7 @@ export default function BuildArea() {
 	const albumData = useSelector((state) => state.album.value);
 
 	return (
-		<section className={styles.buildArea}>
+		<section className={`${styles.buildArea} themeWorkArea`}>
 			<AddSection index={0} />
 			{albumData.sections.map((section, index) => (
 				<EditSection key={"section" + section.id} index={index} />

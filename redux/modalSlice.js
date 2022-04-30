@@ -5,11 +5,13 @@ export const modalSlice = createSlice({
 	initialState: {
 		key: undefined,
 		props: undefined,
+		theme: "",
 	},
 	reducers: {
 		setModal: (state, action) => {
 			state.key = action?.payload?.key;
 			state.props = action?.payload?.props;
+			state.theme = action?.payload?.theme || "";
 		},
 	},
 });

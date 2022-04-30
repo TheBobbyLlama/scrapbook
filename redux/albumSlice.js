@@ -16,6 +16,10 @@ export const albumSlice = createSlice({
 		markSaved: (state) => {
 			state.value.saved = true;
 		},
+		setTheme: (state, action) => {
+			state.value.theme = action.payload;
+			delete state.value.saved;
+		},
 		setTitle: (state, action) => {
 			state.value.title = action.payload;
 			delete state.value.saved;
@@ -47,6 +51,7 @@ export const albumSlice = createSlice({
 export const {
 	setAlbumData,
 	markSaved,
+	setTheme,
 	setTitle,
 	insertSection,
 	removeSection,

@@ -23,6 +23,7 @@ export function Select({
 		styles.select,
 		open && "focus",
 		open && styles.selectFocus,
+		"themeControl",
 	]
 		.filter((item) => !!item)
 		.join(" ");
@@ -57,7 +58,7 @@ export function Select({
 		>
 			{selectedChild}
 			{open && (
-				<div className={styles.selectOptions}>
+				<div className={`${styles.selectOptions} themeControl`}>
 					{children.length
 						? children.map((child, index) => {
 								return cloneElement(child, {

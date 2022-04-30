@@ -1,6 +1,6 @@
 .select {
 	align-items: center;
-	display: inline-flex;
+	display: flex;
 	padding-right: 24px;
 	position: relative;
 }
@@ -61,6 +61,19 @@
 .selectOptions .option:hover {
 	background-color: var(--brand-color);
 	color: white;
+}
+
+.selectLow.selectFocus {
+	border-bottom-color: var(--brand-color-highlight) !important;
+	border-top-color: transparent !important;
+}
+
+.selectLow .selectOptions {
+	border: solid 2px var(--brand-color-highlight);
+	border-radius: var(--ui-border-radius);
+	border-bottom-color: transparent;
+	bottom: 100%;
+	top: initial;
 }
 
 @keyframes expand {
