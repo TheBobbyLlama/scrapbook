@@ -21,7 +21,6 @@ export function Select({
 		className,
 		"select",
 		styles.select,
-		styles.selectItem,
 		open && "focus",
 		open && styles.selectFocus,
 	]
@@ -62,7 +61,6 @@ export function Select({
 					{children.length
 						? children.map((child, index) => {
 								return cloneElement(child, {
-									key: index,
 									onClick: () => {
 										doSelection(index);
 									},
@@ -79,7 +77,7 @@ export function Select({
 	);
 }
 
-export function Option({ icon, className, children, ...rest }) {
+export function Option({ className, children, ...rest }) {
 	const myClass = [className, styles.option].filter((item) => !!item).join(" ");
 	return (
 		<div className={myClass} {...rest}>

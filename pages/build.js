@@ -8,6 +8,7 @@ import { setModal } from "../redux/modalSlice";
 import Head from "next/head";
 import Logo from "../components/Logo";
 import BuildArea from "../components/BuildArea";
+import { Select } from "../components/ui/Select";
 import styles from "../styles/Build.module.css";
 
 export default function CreateAlbum() {
@@ -93,6 +94,16 @@ export default function CreateAlbum() {
 					<div></div>
 				</div>
 			)}
+			<footer className={styles.footer}>
+				<div>
+					<label htmlFor="theme">Theme</label>
+					<Select id="theme"></Select>
+				</div>
+				<div>
+					<input id="private" type="checkbox" />
+					<label htmlFor="private">Private</label>
+				</div>
+			</footer>
 		</main>
 	);
 }

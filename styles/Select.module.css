@@ -1,4 +1,6 @@
 .select {
+	align-items: center;
+	display: inline-flex;
 	padding-right: 24px;
 	position: relative;
 }
@@ -49,6 +51,9 @@
 }
 
 .option {
+	align-items: center;
+	display: flex;
+	gap: 4px;
 	padding: var(--ui-padding);
 	transition: background-color 0.25s, color 0.25s;
 }
