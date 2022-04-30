@@ -65,6 +65,9 @@
 
 .selectLow.selectFocus {
 	border-bottom-color: var(--brand-color-highlight) !important;
+	border-radius: var(--ui-border-radius) !important;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 	border-top-color: transparent !important;
 }
 
@@ -72,6 +75,8 @@
 	border: solid 2px var(--brand-color-highlight);
 	border-radius: var(--ui-border-radius);
 	border-bottom-color: transparent;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 	bottom: 100%;
 	top: initial;
 }

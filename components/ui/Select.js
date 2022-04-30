@@ -1,6 +1,24 @@
-import { useState, useEffect, cloneElement } from "react";
+import { useState, useEffect, useRef, useCallback, cloneElement } from "react";
 
 import styles from "../../styles/Select.module.css";
+
+function isParentOrSelf(checkNode, matchNode) {
+	if (checkNode === matchNode) {
+		return true;
+	}
+
+	let curNode = checkNode.parentNode;
+
+	while (curNode) {
+		if (curNode === matchNode) {
+			return true;
+		}
+
+		curNode = curNode.parentNode;
+	}
+
+	return false;
+}
 
 export function Select({
 	name,
@@ -12,6 +30,21 @@ export function Select({
 }) {
 	const [open, setOpen] = useState(false);
 	const [internalIndex, setInternalIndex] = useState(selectedIndex || 0);
+	const myRef = useRef(null);
+	// Close select options if user clicks elsewhere.
+	const checkClick = useCallback((e) => {
+		if (!isParentOrSelf(e.target, myRef.current)) {
+			setOpen(false);
+		}
+	}, []);
+
+	useEffect(() => {
+		window.addEventListener("click", checkClick);
+
+		return () => {
+			window.removeEventListener("click", checkClick);
+		};
+	}, [checkClick]);
 
 	useEffect(() => {
 		setInternalIndex(selectedIndex);
@@ -47,6 +80,7 @@ export function Select({
 
 	return (
 		<div
+			ref={myRef}
 			name={name}
 			className={myClass}
 			{...rest}
