@@ -55,7 +55,7 @@ export default function CreateAlbum() {
 	}, [dispatch]);
 
 	const clickBrandNav = () => {
-		if (hasData) {
+		if (albumData?.sections.some((section) => section.items.length)) {
 			dispatch(
 				setModal({
 					key: modalKeys.unsavedChanges,
@@ -92,6 +92,7 @@ export default function CreateAlbum() {
 						className={"text in-place themeTitle " + styles.title}
 						type="text"
 						maxLength={50}
+						placeholder="Enter an Album Title"
 						value={albumData.title}
 						onChange={changeTitle}
 					></input>
@@ -117,7 +118,7 @@ export default function CreateAlbum() {
 					<label htmlFor="theme">Theme</label>
 					<Select
 						id="theme"
-						className={`${selectStyles.selectLow} ${styles.footerSelect}`}
+						className={`${selectStyles.selectLow} ${styles.footerSelect} selectLow`}
 						selectedIndex={themeIndex}
 						onChange={changeTheme}
 					>

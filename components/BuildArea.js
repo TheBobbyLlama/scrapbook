@@ -12,7 +12,7 @@ export default function BuildArea() {
 		<section className={`${styles.buildArea} themeWorkArea`}>
 			<AddSection index={0} />
 			{albumData.sections.map((section, index) => (
-				<EditSection key={"section" + section.id} index={index} />
+				<EditSection key={"section" + section.timestamp} index={index} />
 			))}
 		</section>
 	);

@@ -38,7 +38,7 @@
 	background-color: white;
 	border: solid 2px var(--brand-color-highlight);
 	border-radius: var(--ui-border-radius);
-	border-top-color: transparent;
+	border-top-color: transparent !important;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	color: black;
@@ -48,6 +48,7 @@
 	position: absolute;
 	right: -2px;
 	top: 100%;
+	z-index: 1000;
 }
 
 .option {
@@ -74,7 +75,8 @@
 .selectLow .selectOptions {
 	border: solid 2px var(--brand-color-highlight);
 	border-radius: var(--ui-border-radius);
-	border-bottom-color: transparent;
+	border-bottom-color: transparent !important;
+	border-top-color: var(--brand-color-highlight) !important;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	bottom: 100%;

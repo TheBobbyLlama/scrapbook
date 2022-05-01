@@ -1,7 +1,9 @@
 :root {
 	--theme-sunshine-background: #4090c0;
+	--theme-sunshine-button: #f0c020;
 	--theme-sunshine-button-disabled: #4078a0;
 	--theme-sunshine-button-disabled-text: #5098c0;
+	--theme-sunshine-card-background: #50a0d0;
 	--theme-sunshine-section-cutout: #a0d0ff;
 	--theme-sunshine-section-cutout-highlight: #b0e0ff;
 	--theme-sunshine-section-cutout-hover: #60a8d8;
@@ -19,6 +21,10 @@
 	color: var(--theme-sunshine-text);
 }
 
+.sunshineTheme .themeCard {
+	background-color: var(--theme-sunshine-card-background);
+}
+
 .sunshineTheme .themeBordered {
 	background-color: var(--theme-sunshine-background);
 	border-color: rgba(255, 255, 255, 0.25);
@@ -33,9 +39,53 @@
 	color: var(--theme-sunshine-title-highlight);
 }
 
+.sunshineTheme .text,
+.sunshineTheme .select:hover,
+.sunshineTheme .select.focus,
+.sunshineTheme .selectOptions {
+	border-color: var(--theme-sunshine-button);
+}
+
+.sunshineTheme .text:focus {
+	color: var(--theme-sunshine-background);
+}
+
+.sunshineTheme .in-place:focus {
+	color: var(--theme-sunshine-title-highlight);
+}
+
+.sunshineTheme .select:hover::after,
+.sunshineTheme .select.focus::after {
+	color: var(--theme-sunshine-button);
+}
+
+.sunshineTheme .selectOptions .selectOption:hover {
+	background-color: var(--theme-sunshine-section-cutout-hover);
+}
+
+.sunshineTheme .selectLow.focus {
+	border-bottom-color: var(--theme-sunshine-button) !important;
+}
+
+.sunshineTheme .selectLow .selectOptions {
+	border-top-color: var(--theme-sunshine-button) !important;
+}
+
+.sunshineTheme .text:hover {
+	border-color: var(--theme-sunshine-title);
+}
+
+.sunshineTheme .text.in-place::placeholder {
+	color: rgba(192, 192, 192, 0.5);
+}
+
 .sunshineTheme .themeControl {
 	background-color: white;
 	color: black;
+}
+
+.sunshineTheme .themeInset {
+	border-color: rgba(255, 255, 255, 0.25);
 }
 
 .sunshineTheme .themeSectionCutout {
@@ -64,15 +114,18 @@
 	color: var(--theme-sunshine-workarea-cutout-highlight);
 }
 
-.sunshineTheme .btn {
+.sunshineTheme .btn,
+.sunshineTheme input[type="file"]::file-selector-button {
+	background-color: var(--theme-sunshine-button);
+}
+
+.sunshineTheme .btn:hover,
+.sunshineTheme input[type="file"]::file-selector-button:hover {
 	background-color: var(--theme-sunshine-title);
 }
 
-.sunshineTheme .btn:hover {
-	background-color: var(--theme-sunshine-title-highlight);
-}
-
-.sunshineTheme .btn[disabled] {
+.sunshineTheme .btn[disabled],
+.sunshineTheme input[type="file"][disabled]::file-selector-button {
 	background-color: var(--theme-sunshine-button-disabled);
 	color: var(--theme-sunshine-button-disabled-text);
 }

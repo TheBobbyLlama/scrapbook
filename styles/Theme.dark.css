@@ -2,6 +2,7 @@
 	--theme-dark-background: #202020;
 	--theme-dark-button-disabled: #606060;
 	--theme-dark-button-disabled-text: #808080;
+	--theme-dark-card-background: #303030;
 	--theme-dark-control: #101010;
 	--theme-dark-section-cutout: #a0a0a0;
 	--theme-dark-text: #e0e0e0;
@@ -16,6 +17,10 @@
 	color: var(--theme-dark-text);
 }
 
+.darkTheme .themeCard {
+	background-color: var(--theme-dark-card-background);
+}
+
 .darkTheme .themeTitle {
 	color: var(--theme-dark-title);
 }
@@ -23,6 +28,10 @@
 .darkTheme .themeControl {
 	background-color: var(--theme-dark-control);
 	color: var(--theme-dark-text);
+}
+
+.darkTheme .albumCard .themeControl {
+	background-color: var(--theme-dark-background);
 }
 
 .darkTheme .themeSectionCutout {

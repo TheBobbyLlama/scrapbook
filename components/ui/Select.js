@@ -92,7 +92,7 @@ export function Select({
 		>
 			{selectedChild}
 			{open && (
-				<div className={`${styles.selectOptions} themeControl`}>
+				<div className={`${styles.selectOptions} selectOptions themeControl`}>
 					{children.length
 						? children.map((child, index) => {
 								return cloneElement(child, {
@@ -113,7 +113,9 @@ export function Select({
 }
 
 export function Option({ className, children, ...rest }) {
-	const myClass = [className, styles.option].filter((item) => !!item).join(" ");
+	const myClass = [className, styles.option, "selectOption"]
+		.filter((item) => !!item)
+		.join(" ");
 	return (
 		<div className={myClass} {...rest}>
 			{children}

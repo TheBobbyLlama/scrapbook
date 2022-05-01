@@ -44,6 +44,9 @@
 }
 
 @media screen and (max-width: 680px) {
+	.addItem {
+		height: auto;
+	}
 	/* Change orientation from vertical to horizontal */
 	.addItemMinimal {
 		height: auto;

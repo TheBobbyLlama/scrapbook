@@ -15,7 +15,7 @@ export default function AddSection({ index }) {
 						sectionIndex: index,
 						section: {
 							timestamp: Date.now(),
-							title: "New Section",
+							title: "",
 							items: [],
 						},
 					})

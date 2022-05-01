@@ -26,6 +26,8 @@ export const albumSlice = createSlice({
 		},
 		insertSection: (state, action) => {
 			if (action.payload.sectionIndex >= 0) {
+				state.value.sections = [...state.value.sections]; // Copy array so original remains unchanged.
+
 				state.value.sections.splice(
 					action.payload.sectionIndex,
 					0,
@@ -36,13 +38,64 @@ export const albumSlice = createSlice({
 			}
 		},
 		removeSection: (state, action) => {
+			state.value.sections = [...state.value.sections]; // Copy array so original remains unchanged.
 			state.value.sections.splice(action.sectionIndex, 1);
 			delete state.value.saved;
 		},
 		setSectionTitle: (state, action) => {
+			state.value.sections = [...state.value.sections]; // Copy array so original remains unchanged.
+
+			state.value.sections[action.payload.sectionIndex] = {
+				...state.value.sections[action.payload.sectionIndex],
+			}; // Copy section so original remains unchanged.
+
 			state.value.sections[action.payload.sectionIndex].title =
 				action.payload.title;
 			delete state.value.saved;
+		},
+		insertItem: (state, action) => {
+			const { item, sectionIndex, itemIndex } = action.payload;
+			if (
+				item &&
+				sectionIndex >= 0 &&
+				sectionIndex < state.value.sections.length &&
+				itemIndex >= 0
+			) {
+				state.value.sections[sectionIndex] = {
+					...state.value.sections[sectionIndex],
+				}; // Copy section so original remains unchanged.
+
+				state.value.sections[sectionIndex].items = [
+					...state.value.sections[sectionIndex].items,
+				]; // Copy array so original remains unchanged.
+
+				state.value.sections[sectionIndex].items.splice(itemIndex, 0, item);
+
+				delete state.value.saved;
+			}
+		},
+		editItem: (state, action) => {
+			const { item, sectionIndex, itemIndex } = action.payload;
+
+			if (
+				item &&
+				sectionIndex >= 0 &&
+				sectionIndex < state.value.sections.length &&
+				itemIndex >= 0 &&
+				itemIndex < state.value.sections[sectionIndex].items.length
+			) {
+				state.value.sections[sectionIndex] = {
+					...state.value.sections[sectionIndex],
+				}; // Copy section so original remains unchanged.
+
+				state.value.sections[sectionIndex].items = [
+					...state.value.sections[sectionIndex].items,
+				]; // Copy array so original remains unchanged.
+
+				state.value.sections[sectionIndex].items[itemIndex] = item;
+
+				delete state.value.saved;
+			}
 		},
 	},
 });
@@ -56,6 +109,8 @@ export const {
 	insertSection,
 	removeSection,
 	setSectionTitle,
+	insertItem,
+	editItem,
 } = albumSlice.actions;
 
 export default albumSlice.reducer;
