@@ -66,6 +66,7 @@ const SelectorImage = ({ value, onSelect }) => {
 			newValue.dataCropped = canvasRef.current.toDataURL();
 		} else {
 			delete newValue.crop;
+			delete newValue.dataCropped;
 		}
 		onSelect(newValue);
 	};
