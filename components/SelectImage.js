@@ -100,7 +100,7 @@ const SelectorImage = ({ value, onSelect }) => {
 					>
 						{/* This HAS to be an <img> element to work with ReactCrop. */}
 						{/* eslint-disable @next/next/no-img-element */}
-						<img ref={imgRef} src={image} alt="" />
+						<img ref={imgRef} src={image} alt="" crossOrigin="anonymous" />
 						{/* eslint-enable @next/next/no-img-element */}
 					</ReactCrop>
 				)}
