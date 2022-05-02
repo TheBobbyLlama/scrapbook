@@ -1,5 +1,21 @@
+.editSection h2 {
+	margin: 0 30px;
+}
+
 .title {
 	font-weight: bold;
 	text-align: center;
 	width: 100%;
+}
+
+.trashButton {
+	align-items: center;
+	display: flex;
+	height: 28px !important;
+	justify-content: center;
+	padding: 2px !important;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 28px !important;
 }

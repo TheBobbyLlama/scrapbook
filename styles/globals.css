@@ -193,6 +193,7 @@ header .brand {
 	gap: 10px;
 	justify-content: center;
 	padding: var(--ui-album-section-padding);
+	position: relative;
 	transition: background-color 0.25s, border-color 0.25s, color 0.25s;
 	width: 100%;
 }
@@ -212,6 +213,7 @@ header .brand {
 	gap: 10px;
 	height: var(--ui-album-item-size);
 	padding: var(--ui-album-item-padding);
+	position: relative;
 	width: var(--ui-album-item-size);
 }
 
@@ -224,12 +226,14 @@ header .brand {
 	height: 3.5em;
 }
 
-.albumCard .cardContent {
+.albumCard .cardContent,
+.modal-generic .cardContent {
 	flex-grow: 1;
 	position: relative;
 }
 
-.albumCard .cardContent > * {
+.albumCard .cardContent > *,
+.modal-generic .cardContent > * {
 	height: 100%;
 	width: 100%;
 }
@@ -284,17 +288,27 @@ header .brand {
 	margin-top: 20px;
 }
 
-.modal-generic > h1,
-.modal-generic > h2,
-.modal-generic > h3,
-.modal-generic > h4,
-.modal-generic > h5 {
+.modal h1,
+.modal-generic h1,
+.modal h2,
+.modal-generic h2,
+.modal h3,
+.modal-generic h3,
+.modal h4,
+.modal-generic h4,
+.modal h5,
+.modal-generic h5 {
 	color: var(--brand-color-dark);
 }
 
 .modal-generic > input,
 .modal-generic > .select {
 	margin-top: 4px;
+	width: 100%;
+}
+
+.modal-generic > .cardContent {
+	height: 100px;
 	width: 100%;
 }
 

@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeSection, setSectionTitle } from "../redux/albumSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { deleteSection, setSectionTitle } from "../redux/albumSlice";
+import { setModal } from "../redux/modalSlice";
+import { modalKeys } from "../lib/globals";
 
 import AddSection from "./AddSection";
 import AddItem from "./AddItem";
@@ -13,7 +17,21 @@ export default function EditSection({ index }) {
 
 	return (
 		<>
-			<section className="albumSection themeStandard">
+			<section className={`albumSection ${styles.editSection} themeStandard`}>
+				<div
+					className={`${styles.trashButton} btn`}
+					onClick={() => {
+						dispatch(
+							setModal({
+								key: modalKeys.deleteSection,
+								props: { sectionIndex: index },
+								theme: albumData.theme,
+							})
+						);
+					}}
+				>
+					<FontAwesomeIcon icon={faTrash} />
+				</div>
 				<h2>
 					<input
 						type="text"
@@ -45,5 +63,43 @@ export default function EditSection({ index }) {
 			</section>
 			<AddSection index={index + 1} />
 		</>
+	);
+}
+
+export function ModalDeleteSection({ sectionIndex }) {
+	const albumData = useSelector((state) => state.album.value);
+	const dispatch = useDispatch();
+	const itemCount = albumData.sections[sectionIndex].items.length;
+
+	return (
+		<div className="modal-generic themeStandard">
+			<h2 className="themeTitle">Confirm</h2>
+			<p>Are you sure you want to delete this section?</p>
+			{itemCount && (
+				<p>
+					This section currently has {itemCount}{" "}
+					{itemCount === 1 ? "item" : "items"} which will be lost!
+				</p>
+			)}
+			<div>
+				<button
+					className="btn"
+					onClick={() => {
+						dispatch(deleteSection({ sectionIndex }));
+						dispatch(setModal());
+					}}
+				>
+					Yes
+				</button>
+				<button
+					className="btn"
+					onClick={() => {
+						dispatch(setModal());
+					}}
+				>
+					No
+				</button>
+			</div>
+		</div>
 	);
 }

@@ -1,16 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useFormData from "../hooks/useFormData";
-import { insertItem } from "../redux/albumSlice";
+import { editItem } from "../redux/albumSlice";
 import { setModal } from "../redux/modalSlice";
 
 import { Select, Option } from "./ui/Select";
 
 import { albumItemSelectors } from "../lib/globals";
 
-const ModalAddItem = ({ index, sectionIndex }) => {
+const ModalEditItem = ({ itemIndex, sectionIndex }) => {
+	const albumData = useSelector((state) => state.album.value);
+
+	const curItem = albumData.sections[sectionIndex].items[itemIndex];
+
 	const dispatch = useDispatch();
 	const [formData, handleChange, updateFormData] = useFormData({
-		itemType: 0,
+		itemType: albumItemSelectors.findIndex((key) => key.key === curItem.type),
+		value: curItem.value,
 	});
 
 	let SelectorComponent = albumItemSelectors[formData.itemType].selectComponent;
@@ -19,19 +24,14 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 		updateFormData({ value });
 	};
 
-	const addItem = () => {
+	const confirmEdit = () => {
+		const newData = {
+			type: albumItemSelectors[formData.itemType].key,
+			value: formData.value,
+		};
+
 		dispatch(
-			insertItem({
-				sectionIndex,
-				itemIndex: index,
-				item: {
-					timestamp: Date.now(),
-					title: "",
-					type: albumItemSelectors[formData.itemType].key,
-					value: formData.value,
-					caption: "",
-				},
-			})
+			editItem({ itemIndex, sectionIndex, item: { ...curItem, ...newData } })
 		);
 		dispatch(setModal());
 	};
@@ -39,7 +39,7 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 	return (
 		<div className="modal themeStandard">
 			<h3 className="themeTitle">
-				Add New
+				Edit
 				<Select
 					name="itemType"
 					className="themeControl"
@@ -56,8 +56,12 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 			</h3>
 			<SelectorComponent value={formData.value} onSelect={selectItemValue} />
 			<div>
-				<button className="btn" onClick={addItem} disabled={!formData.value}>
-					Add
+				<button
+					className="btn"
+					onClick={confirmEdit}
+					disabled={!formData.value}
+				>
+					Update
 				</button>
 				<button className="btn" onClick={() => dispatch(setModal())}>
 					Cancel
@@ -67,4 +71,4 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 	);
 };
 
-export default ModalAddItem;
+export default ModalEditItem;

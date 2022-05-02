@@ -41,6 +41,8 @@
 
 .darkTheme .themeSectionCutout:hover {
 	background-color: var(--brand-color-dark);
+	border-color: var(--theme-dark-text);
+	color: var(--theme-dark-text);
 }
 
 .darkTheme .themeWorkArea {
@@ -54,6 +56,8 @@
 
 .darkTheme .themeWorkAreaCutout:hover {
 	background-color: var(--brand-color-dark);
+	border-color: var(--theme-dark-text);
+	color: var(--theme-dark-text);
 }
 
 .darkTheme .btn[disabled] {

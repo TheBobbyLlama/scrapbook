@@ -4,7 +4,10 @@ import { setModal } from "../redux/modalSlice";
 
 import { modalKeys, themes } from "../lib/globals";
 
+import { ModalDeleteSection } from "./EditSection";
 import ModalAddItem from "./ModalAddItem";
+import ModalEditItem from "./ModalEditItem";
+import { ModalDeleteItem } from "./EditItem";
 import { ModalUnsavedChanges } from "../pages/build";
 
 function isChild(checkNode, matchNode) {
@@ -36,8 +39,17 @@ export default function Modal() {
 	};
 
 	switch (key) {
+		case modalKeys.deleteSection:
+			ModalGen = ModalDeleteSection;
+			break;
 		case modalKeys.addItem:
 			ModalGen = ModalAddItem;
+			break;
+		case modalKeys.editItem:
+			ModalGen = ModalEditItem;
+			break;
+		case modalKeys.deleteItem:
+			ModalGen = ModalDeleteItem;
 			break;
 		case modalKeys.unsavedChanges:
 			ModalGen = ModalUnsavedChanges;

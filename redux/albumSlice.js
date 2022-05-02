@@ -37,9 +37,9 @@ export const albumSlice = createSlice({
 				delete state.value.saved;
 			}
 		},
-		removeSection: (state, action) => {
+		deleteSection: (state, action) => {
 			state.value.sections = [...state.value.sections]; // Copy array so original remains unchanged.
-			state.value.sections.splice(action.sectionIndex, 1);
+			state.value.sections.splice(action.payload.sectionIndex, 1);
 			delete state.value.saved;
 		},
 		setSectionTitle: (state, action) => {
@@ -97,6 +97,28 @@ export const albumSlice = createSlice({
 				delete state.value.saved;
 			}
 		},
+		deleteItem: (state, action) => {
+			const { sectionIndex, itemIndex } = action.payload;
+
+			if (
+				sectionIndex >= 0 &&
+				sectionIndex < state.value.sections.length &&
+				itemIndex >= 0 &&
+				itemIndex < state.value.sections[sectionIndex].items.length
+			) {
+				state.value.sections[sectionIndex] = {
+					...state.value.sections[sectionIndex],
+				}; // Copy section so original remains unchanged.
+
+				state.value.sections[sectionIndex].items = [
+					...state.value.sections[sectionIndex].items,
+				]; // Copy array so original remains unchanged.
+
+				state.value.sections[sectionIndex].items.splice(itemIndex, 1);
+
+				delete state.value.saved;
+			}
+		},
 	},
 });
 
@@ -107,10 +129,11 @@ export const {
 	setTheme,
 	setTitle,
 	insertSection,
-	removeSection,
+	deleteSection,
 	setSectionTitle,
 	insertItem,
 	editItem,
+	deleteItem,
 } = albumSlice.actions;
 
 export default albumSlice.reducer;
