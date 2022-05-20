@@ -78,12 +78,80 @@ export function Select({
 		}
 	};
 
+	const handleKeyDown = (e) => {
+		if (open) {
+			switch (e.code) {
+				case "Enter":
+				case "Space":
+				case "Escape":
+					setOpen(false);
+					break;
+				case "ArrowUp":
+					if (internalIndex > 0) {
+						doSelection(internalIndex - 1);
+					}
+					break;
+				case "ArrowDown":
+					if (children?.length && internalIndex < children.length - 1) {
+						doSelection(internalIndex + 1);
+					}
+					break;
+				default:
+					if (children?.length && e.key.match(/^[a-z0-9]$/i)) {
+						const matches = children
+							.map((child) => child.key.toString().toLowerCase())
+							.filter((key) => {
+								return key.startsWith(e.key.toLowerCase());
+							})
+							.map((key) =>
+								children.findIndex(
+									(child) => child.key.toString().toLowerCase() === key
+								)
+							);
+
+						let setIndex = matches.length ? matches[0] : -1;
+
+						for (let i = 0; i < matches.length; i++) {
+							if (matches[i] > internalIndex) {
+								setIndex = matches[i];
+								break;
+							}
+						}
+
+						if (setIndex > -1) {
+							doSelection(setIndex);
+						}
+					}
+					break;
+			}
+		} else {
+			switch (e.code) {
+				case "Enter":
+				case "Space":
+				case "ArrowDown":
+					setOpen(true);
+					break;
+				default:
+					break;
+			}
+			if (e.code === "Enter" || e.code === "Space" || e.code === "ArrowDown") {
+				setOpen(true);
+			}
+		}
+	};
+
 	return (
 		<div
 			ref={myRef}
 			name={name}
 			className={myClass}
+			role="combobox"
+			aria-controls="customSelectOpen"
+			aria-activedescendant={open && "customSelectOpen"}
+			aria-expanded={open}
+			tabIndex={0}
 			{...rest}
+			onKeyDown={handleKeyDown}
 			onClick={() => {
 				if (children) {
 					setOpen(!open);
@@ -92,7 +160,10 @@ export function Select({
 		>
 			{selectedChild}
 			{open && (
-				<div className={`${styles.selectOptions} selectOptions themeControl`}>
+				<div
+					id="customSelectOpen"
+					className={`${styles.selectOptions} selectOptions themeControl`}
+				>
 					{children.length
 						? children.map((child, index) => {
 								return cloneElement(child, {
