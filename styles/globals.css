@@ -177,6 +177,10 @@ header .brand {
 	padding: 0 12px;
 }
 
+h1 .brand {
+	padding: 0;
+}
+
 .centerText {
 	text-align: center;
 }

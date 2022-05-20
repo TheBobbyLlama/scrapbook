@@ -11,6 +11,17 @@
 	color: var(--outer-color-text);
 }
 
+.header h1 {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+	min-height: 2em;
+	margin-top: 10px;
+	white-space: nowrap;
+}
+
 .cardHolder {
 	align-items: center;
 	display: flex;
@@ -36,4 +47,13 @@
 
 .card button {
 	margin: 10px;
+}
+
+.showFade > * {
+	opacity: 0;
+	transition: opacity 2s ease-in-out;
+}
+
+.fadeIn {
+	opacity: 1;
 }

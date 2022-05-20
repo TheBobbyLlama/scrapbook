@@ -79,13 +79,13 @@ export default function CreateAlbum() {
 		<main className={`${styles.main} ${themes[themeIndex].className}`}>
 			<Head>
 				<title>
-					Cherish - {albumData?.title ? albumData.title : "New Album"}
+					Cherit - {albumData?.title ? albumData.title : "New Album"}
 				</title>
 			</Head>
 			<header className={`${styles.header} themeBordered`}>
 				<h2 className="brand" onClick={clickBrandNav}>
 					<Logo size="1em" />
-					Cherish
+					Cherit
 				</h2>
 				{albumData && (
 					<input
