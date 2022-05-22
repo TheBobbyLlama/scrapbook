@@ -59,7 +59,7 @@ const ModalEditItem = ({ itemIndex, sectionIndex }) => {
 				<button
 					className="btn"
 					onClick={confirmEdit}
-					disabled={!formData.value}
+					disabled={!formData.value || formData.value.invalid}
 				>
 					Update
 				</button>

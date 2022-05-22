@@ -56,7 +56,11 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 			</h3>
 			<SelectorComponent value={formData.value} onSelect={selectItemValue} />
 			<div>
-				<button className="btn" onClick={addItem} disabled={!formData.value}>
+				<button
+					className="btn"
+					onClick={addItem}
+					disabled={!formData.value || formData.value.invalid}
+				>
 					Add
 				</button>
 				<button className="btn" onClick={() => dispatch(setModal())}>

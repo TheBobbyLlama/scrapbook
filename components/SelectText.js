@@ -19,10 +19,11 @@ const SelectorText = ({ value, onSelect }) => {
 
 	// The Quill change handler passes many other params that we don't need.
 	const handleChange = (editorText) => {
-		onSelect(editorText);
+		onSelect({
+			text: editorText,
+			invalid: editorText.length > 5000,
+		});
 	};
-
-	console.log(value);
 
 	return (
 		<div className={`${styles.selectSimple} ${styles.fixedHeight}`}>
@@ -30,7 +31,7 @@ const SelectorText = ({ value, onSelect }) => {
 				className={`${styles.quill} themeControl`}
 				formats={formats}
 				modules={modules}
-				value={value}
+				value={value?.text || ""}
 				onChange={handleChange}
 			/>
 		</div>
