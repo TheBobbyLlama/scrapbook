@@ -11,3 +11,18 @@
 .selectSimple > div {
 	margin: 0 auto;
 }
+
+.selectSimple.fixedHeight {
+	height: 500px;
+	max-height: 80vh;
+}
+
+.selectSimple.fixedHeight > * {
+	height: 100%;
+	width: 100%;
+}
+
+.selectSimple.fixedHeight > .quill {
+	display: flex;
+	flex-direction: column;
+}

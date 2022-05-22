@@ -51,6 +51,11 @@ input[type="file"] {
 	color: transparent;
 }
 
+li {
+	margin-left: 2em;
+	padding-left: 0 !important; /* Quill */
+}
+
 * + p,
 p + * {
 	margin-top: 10px;
@@ -371,4 +376,9 @@ h1 .brand {
 	100% {
 		opacity: 1;
 	}
+}
+
+/* Fix for Quill toolbar contrast for all themes */
+.ql-formats {
+	filter: invert(0.5);
 }

@@ -75,14 +75,16 @@ export default function EditItem({ index, sectionIndex, data }) {
 						<FontAwesomeIcon icon={faPenToSquare} />
 					</div>
 				</div>
-				<textarea
-					name="caption"
-					className="text themeControl"
-					placeholder="Add a Caption (optional)"
-					maxLength={100}
-					value={formData.caption}
-					onChange={handleChange}
-				/>
+				{curItem?.type !== "Text" ? (
+					<textarea
+						name="caption"
+						className="text themeControl"
+						placeholder="Add a Caption (optional)"
+						maxLength={100}
+						value={formData.caption}
+						onChange={handleChange}
+					/>
+				) : null}
 			</div>
 		</>
 	);

@@ -3,3 +3,10 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+
+.displayText {
+	max-height: 240px; /* ??? */
+	overflow: hidden;
+	padding: 0 10px;
+	text-overflow: ellipsis;
+}
