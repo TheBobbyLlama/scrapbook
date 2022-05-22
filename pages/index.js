@@ -68,7 +68,7 @@ export default function Home(props) {
 					</p>
 					<div className="centerText">
 						<Link href="/build" passHref>
-							<button className="btn">Start a Scrapbook!</button>
+							<button className="btn">Start an Album!</button>
 						</Link>
 					</div>
 				</section>

@@ -4,7 +4,10 @@ export default function Document() {
 	return (
 		<Html>
 			<Head>
-				<meta name="description" content="A free online scrapbook creator!" />
+				<meta
+					name="description"
+					content="A free online scrapbook and photo album site that supports image cropping and upload."
+				/>
 				<link rel="icon" href="/Logo.png" />
 				<link
 					href="https://fonts.googleapis.com/css2?family=BioRhyme&display=swap"
