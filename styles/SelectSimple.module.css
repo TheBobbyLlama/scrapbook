@@ -1,0 +1,13 @@
+.selectSimple {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.selectSimple input {
+	width: 100%;
+}
+
+.selectSimple > div {
+	margin: 0 auto;
+}

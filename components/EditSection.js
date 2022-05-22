@@ -75,12 +75,12 @@ export function ModalDeleteSection({ sectionIndex }) {
 		<div className="modal-generic themeStandard">
 			<h2 className="themeTitle">Confirm</h2>
 			<p>Are you sure you want to delete this section?</p>
-			{itemCount && (
+			{itemCount ? (
 				<p>
 					This section currently has {itemCount}{" "}
 					{itemCount === 1 ? "item" : "items"} which will be lost!
 				</p>
-			)}
+			) : null}
 			<div>
 				<button
 					className="btn"
