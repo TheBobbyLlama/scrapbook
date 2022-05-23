@@ -49,7 +49,7 @@ export default function Build(props) {
 
 	useEffect(() => {
 		if (albumData?._id) {
-			router.push(
+			router.replace(
 				{
 					pathname: "/build",
 					query: {

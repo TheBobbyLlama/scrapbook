@@ -22,6 +22,12 @@ const cloneAlbum = (albumData) => {
 	return result;
 };
 
+const throttleFunc = (timer) => {
+	return new Promise((res) => {
+		setTimeout(res, timer);
+	});
+};
+
 const ModalSave = () => {
 	const [isSaving, setIsSaving] = useState(false);
 	const [password, setPassword] = useState("");
@@ -71,7 +77,7 @@ const ModalSave = () => {
 		setIsSaving(true);
 
 		while (imageQueue.length) {
-			const imgurResult = await fetch("/api/image", {
+			const imgurResult = fetch("/api/image", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -81,6 +87,9 @@ const ModalSave = () => {
 					data: imageQueue[0].data,
 				}),
 			}).then((data) => data.json());
+
+			// Throttle function determines a minimum time to wait, to avoid API rate limits.
+			await Promise.all([imgurResult, throttleFunc(1000)]);
 
 			if (imgurResult.url) {
 				const curItem =
