@@ -78,9 +78,11 @@ export async function getServerSideProps({ query }) {
 			for (let i = 0; i < albumData.sections[s].items.length; i++) {
 				const curItem = albumData.sections[s].items[i];
 
-				curItem.value = await textCollection.findOne({
-					_id: ObjectId(curItem.value._id),
-				});
+				if (curItem.type === "Text") {
+					curItem.value = await textCollection.findOne({
+						_id: ObjectId(curItem.value._id),
+					});
+				}
 			}
 		}
 

@@ -10,7 +10,7 @@ export default function handler(req, res) {
 
 	const body = new FormData();
 
-	body.append("image", data.replace(/^data:image\/png;base64,/, "")); // Need to strip the prefix for the API!
+	body.append("image", data.replace(/^data:image\/.*;base64,/, "")); // Need to strip the prefix for the API!
 	body.append("type", "base64");
 
 	if (title) {
@@ -31,11 +31,9 @@ export default function handler(req, res) {
 			if (data.success) {
 				res.status(200).json({ url: data.data.link });
 			} else {
-				res
-					.status(data.errors[0]?.status || 500)
-					.json({
-						message: data.errors[0]?.detail || "An error has occurred.",
-					});
+				res.status(500).json({
+					message: "An error has occurred.",
+				});
 			}
 		}, res.status(500));
 }
