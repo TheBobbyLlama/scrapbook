@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { setModal } from "../redux/modalSlice";
 
@@ -29,9 +30,18 @@ function isChild(checkNode, matchNode) {
 export default function Modal() {
 	const { key, props, theme } = useSelector((state) => state.modal);
 	const dispatch = useDispatch();
+	const router = useRouter();
 	const bgRef = useRef(null);
 
 	let ModalGen;
+
+	// Set up an event to ensure the current modal will always be cleared if the user navigates elsewhere.
+	useEffect(() => {
+		router.beforePopState(() => {
+			dispatch(setModal());
+			return true;
+		});
+	}, []);
 
 	// Clear modal if it's cancellable and the user clicks outside.
 	const bgClick = (e) => {
