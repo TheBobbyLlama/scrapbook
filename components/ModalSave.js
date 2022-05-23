@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlbumData } from "../redux/albumSlice";
 import { setModal } from "../redux/modalSlice";
+import axios from "axios";
 
 import Loading from "./Loading";
 
@@ -77,21 +78,18 @@ const ModalSave = () => {
 		setIsSaving(true);
 
 		while (imageQueue.length) {
-			const imgurResult = fetch("/api/image", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					title: imageQueue[0].title,
-					data: imageQueue[0].data,
-				}),
-			}).then((data) => data.json());
+			const imageRequest = axios.post("/api/image", {
+				title: imageQueue[0].title,
+				data: imageQueue[0].data,
+			});
 
 			// Throttle function determines a minimum time to wait, to avoid API rate limits.
-			await Promise.all([imgurResult, throttleFunc(1000)]);
+			const [imageResult] = await Promise.all([
+				imageRequest,
+				throttleFunc(1000),
+			]);
 
-			if (imgurResult.url) {
+			if (imageResult.data?.url) {
 				const curItem =
 					saveMe.sections[imageQueue[0].sectionIndex].items[
 						imageQueue[0].itemIndex
@@ -102,33 +100,21 @@ const ModalSave = () => {
 				] = {
 					...curItem,
 					value: {
-						url: imgurResult.url,
+						url: imageResult.data.url,
 					},
 				};
+			} else {
+				showError("TODO!");
 			}
 
 			imageQueue.splice(0, 1); // Clear the queued item.
 			setProcessed((state) => state + 1);
 		}
 
-		fetch("/api/save", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(saveMe),
-		})
-			.then((res) => {
-				if (res.ok) {
-					return res.json();
-				} else {
-					showError(res.status);
-				}
-			}, showError)
-			.then((data) => {
-				dispatch(setAlbumData(data));
-				dispatch(setModal());
-			}, showError);
+		axios.post("/api/save", saveMe).then(({ data }) => {
+			dispatch(setAlbumData(data));
+			dispatch(setModal());
+		}, showError);
 	};
 
 	// If the album already has an id, then we can go straight to saving.
