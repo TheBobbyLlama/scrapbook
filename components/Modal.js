@@ -8,6 +8,7 @@ import { ModalDeleteSection } from "./EditSection";
 import ModalAddItem from "./ModalAddItem";
 import ModalEditItem from "./ModalEditItem";
 import { ModalDeleteItem } from "./EditItem";
+import ModalSave from "./ModalSave";
 import { ModalUnsavedChanges } from "../pages/build";
 
 function isChild(checkNode, matchNode) {
@@ -50,6 +51,9 @@ export default function Modal() {
 			break;
 		case modalKeys.deleteItem:
 			ModalGen = ModalDeleteItem;
+			break;
+		case modalKeys.saveAlbum:
+			ModalGen = ModalSave;
 			break;
 		case modalKeys.unsavedChanges:
 			ModalGen = ModalUnsavedChanges;

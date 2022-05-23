@@ -247,6 +247,17 @@ h1 .brand {
 	width: 100%;
 }
 
+.form-row {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.inline-form > input {
+	flex-grow: 1;
+}
+
 .modalBG {
 	align-items: center;
 	animation: appear 0.25s ease-in-out;

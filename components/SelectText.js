@@ -20,6 +20,7 @@ const SelectorText = ({ value, onSelect }) => {
 	// The Quill change handler passes many other params that we don't need.
 	const handleChange = (editorText) => {
 		onSelect({
+			_id: value?._id,
 			text: editorText,
 			invalid: editorText.length > 5000,
 		});

@@ -12,6 +12,7 @@ import { setModal } from "../redux/modalSlice";
 
 import Head from "next/head";
 import Logo from "../components/Logo";
+import Loading from "../components/Loading";
 import BuildArea from "../components/BuildArea";
 import { Select, Option } from "../components/ui/Select";
 import styles from "../styles/Build.module.css";
@@ -52,7 +53,22 @@ export default function CreateAlbum() {
 				})
 			);
 		}
-	}, [dispatch]);
+	}, []);
+
+	useEffect(() => {
+		if (albumData?._id) {
+			router.push(
+				{
+					pathname: "/build",
+					query: {
+						id: albumData._id,
+					},
+				},
+				undefined,
+				{ shallow: true }
+			);
+		}
+	}, [albumData?._id]);
 
 	const clickBrandNav = () => {
 		if (albumData?.sections.some((section) => section.items.length)) {
@@ -73,6 +89,10 @@ export default function CreateAlbum() {
 
 	const changeTheme = (e) => {
 		dispatch(setTheme(themes[e.target.value].name));
+	};
+
+	const showSaveModal = () => {
+		dispatch(setModal({ key: modalKeys.saveAlbum, theme: albumData.theme }));
 	};
 
 	return (
@@ -101,18 +121,12 @@ export default function CreateAlbum() {
 					<button className="btn" disabled={!canShare}>
 						Share
 					</button>
-					<button className="btn" disabled={!canSave}>
+					<button className="btn" onClick={showSaveModal} disabled={!canSave}>
 						Save
 					</button>
 				</div>
 			</header>
-			{albumData ? (
-				<BuildArea albumData={albumData} />
-			) : (
-				<div className="lds-heart">
-					<div></div>
-				</div>
-			)}
+			{albumData ? <BuildArea albumData={albumData} /> : <Loading />}
 			<footer className={`${styles.footer} themeBordered`}>
 				<div>
 					<label htmlFor="theme">Theme</label>

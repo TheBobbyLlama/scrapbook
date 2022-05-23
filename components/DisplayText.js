@@ -4,7 +4,7 @@ export default function DisplayText({ data }) {
 	return (
 		<div
 			className={styles.displayText}
-			dangerouslySetInnerHTML={{ __html: data }}
+			dangerouslySetInnerHTML={{ __html: data.text }}
 		/>
 	);
 }
