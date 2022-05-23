@@ -1,4 +1,4 @@
-.buildArea {
+.albumArea {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1; /* Used for filling parent container */

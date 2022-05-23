@@ -31,7 +31,11 @@ export default function handler(req, res) {
 			if (data.success) {
 				res.status(200).json({ url: data.data.link });
 			} else {
-				res.status(data.status);
+				res
+					.status(data.errors[0]?.status || 500)
+					.json({
+						message: data.errors[0]?.detail || "An error has occurred.",
+					});
 			}
 		}, res.status(500));
 }

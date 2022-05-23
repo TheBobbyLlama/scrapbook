@@ -76,7 +76,7 @@ input[type="file"]::file-selector-button {
 	cursor: pointer;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1em;
-	height: var(--ui-height);
+	min-height: var(--ui-height);
 	padding: var(--ui-padding);
 	transition: background-color 0.25s;
 }
@@ -247,6 +247,10 @@ h1 .brand {
 	width: 100%;
 }
 
+.albumCard .cardCaption {
+	height: 25%;
+}
+
 .form-row {
 	display: flex;
 	justify-content: center;
@@ -392,4 +396,9 @@ h1 .brand {
 /* Fix for Quill toolbar contrast for all themes */
 .ql-formats {
 	filter: invert(0.5);
+}
+
+/* Theme defaults */
+.themeTitle {
+	color: var(--brand-color);
 }

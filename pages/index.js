@@ -72,9 +72,9 @@ export default function Home(props) {
 						</Link>
 					</div>
 				</section>
-				<section className={styles.card}>
+				{/*<section className={styles.card}>
 					<h2>Latest Albums</h2>
-				</section>
+				</section>*/}
 			</div>
 		</main>
 	);
@@ -95,7 +95,7 @@ export async function getServerSideProps() {
 
 		return {
 			props: {
-				latest,
+				latest: JSON.parse(JSON.stringify(latest)),
 			},
 		};
 	} catch (e) {

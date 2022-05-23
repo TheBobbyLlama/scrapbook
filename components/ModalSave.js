@@ -125,7 +125,7 @@ const ModalSave = () => {
 	// If the album already has an id, then we can go straight to saving.
 	useEffect(() => {
 		if (albumData._id) {
-			saveAlbum(albumData);
+			saveAlbum();
 		}
 	}, []);
 

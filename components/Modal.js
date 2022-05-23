@@ -10,6 +10,7 @@ import ModalEditItem from "./ModalEditItem";
 import { ModalDeleteItem } from "./EditItem";
 import ModalSave from "./ModalSave";
 import { ModalUnsavedChanges } from "../pages/build";
+import ModalShare from "./ModalShare";
 
 function isChild(checkNode, matchNode) {
 	let curNode = checkNode.parentNode;
@@ -58,6 +59,8 @@ export default function Modal() {
 		case modalKeys.unsavedChanges:
 			ModalGen = ModalUnsavedChanges;
 			break;
+		case modalKeys.shareAlbum:
+			ModalGen = ModalShare;
 		default:
 			break;
 	}

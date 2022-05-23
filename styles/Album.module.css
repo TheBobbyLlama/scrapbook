@@ -1,0 +1,22 @@
+.main {
+	background-color: var(--work-color);
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.header {
+	align-items: center;
+	background-color: white;
+	border-bottom: solid 2px var(--brand-color);
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 12px;
+}
+
+.header h2 {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 4px;
+}

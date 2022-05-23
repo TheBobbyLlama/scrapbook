@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-
+import { ObjectId } from "mongodb";
 import { getCollection } from "../../lib/mongodb";
 
 export default async function handler(req, res) {
@@ -18,10 +18,10 @@ export default async function handler(req, res) {
 			if (curItem.type === "Text" && curItem.value?.text) {
 				let result;
 
-				if (curItem.value_id) {
-					result = await textCollection.findOneAndUpdate(
-						{ _id: curItem.value._id },
-						{ text: curItem.value.text }
+				if (curItem.value._id) {
+					result = await textCollection.updateOne(
+						{ _id: ObjectId(curItem.value._id) },
+						{ $set: { text: curItem.value.text } }
 					);
 				} else {
 					result = await textCollection.insertOne({
@@ -40,7 +40,11 @@ export default async function handler(req, res) {
 	}
 
 	if (album._id) {
-		result = await albumCollection.findOneAndUpdate({ _id: album._id }, album);
+		const { _id, ...setAlbum } = album;
+		result = await albumCollection.updateOne(
+			{ _id: ObjectId(album._id) },
+			{ $set: { ...setAlbum } }
+		);
 	} else if (album.password) {
 		album.password = await bcrypt.hash(album.password, 10);
 		result = await albumCollection.insertOne(album);

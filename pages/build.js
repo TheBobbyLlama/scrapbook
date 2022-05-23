@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import {
-	setAlbumData,
-	markSaved,
-	setTheme,
-	setTitle,
-} from "../redux/albumSlice";
+import { MongoClient, ObjectId } from "mongodb";
+import { useDispatch, useSelector } from "react-redux";
+import { setAlbumData, setTheme, setTitle } from "../redux/albumSlice";
 import { themes, modalKeys } from "../lib/globals";
 import { setModal } from "../redux/modalSlice";
 
@@ -18,7 +14,8 @@ import { Select, Option } from "../components/ui/Select";
 import styles from "../styles/Build.module.css";
 import selectStyles from "../styles/Select.module.css";
 
-export default function CreateAlbum() {
+export default function Build(props) {
+	const { albumData: inputData } = props;
 	const albumData = useSelector((state) => state.album.value);
 	const dispatch = useDispatch();
 	const router = useRouter();
@@ -26,7 +23,7 @@ export default function CreateAlbum() {
 	const hasData =
 		albumData?.title &&
 		albumData?.sections.some((section) => section.items.length);
-	const canShare = albumData?.saved && hasData;
+	const canShare = albumData?._id;
 	const canSave = !albumData?.saved && hasData;
 
 	const themeIndex = albumData
@@ -37,13 +34,8 @@ export default function CreateAlbum() {
 		: 0;
 
 	useEffect(() => {
-		const query = new URLSearchParams(window.location.search);
-		const tmpId = query.get("id");
-
-		if (tmpId) {
-			/*fetch(`/api/album/${tmpId}`).then((data) => {
-				console.log(data);
-			});*/
+		if (inputData) {
+			dispatch(setAlbumData(inputData));
 		} else {
 			dispatch(
 				setAlbumData({
@@ -95,6 +87,10 @@ export default function CreateAlbum() {
 		dispatch(setModal({ key: modalKeys.saveAlbum, theme: albumData.theme }));
 	};
 
+	const showShareModal = () => {
+		dispatch(setModal({ key: modalKeys.shareAlbum, theme: albumData.theme }));
+	};
+
 	return (
 		<main className={`${styles.main} ${themes[themeIndex].className}`}>
 			<Head>
@@ -118,7 +114,7 @@ export default function CreateAlbum() {
 					></input>
 				)}
 				<div className={styles.headerButtons}>
-					<button className="btn" disabled={!canShare}>
+					<button className="btn" onClick={showShareModal} disabled={!canShare}>
 						Share
 					</button>
 					<button className="btn" onClick={showSaveModal} disabled={!canSave}>
@@ -126,26 +122,32 @@ export default function CreateAlbum() {
 					</button>
 				</div>
 			</header>
-			{albumData ? <BuildArea albumData={albumData} /> : <Loading />}
-			<footer className={`${styles.footer} themeBordered`}>
-				<div>
-					<label htmlFor="theme">Theme</label>
-					<Select
-						id="theme"
-						className={`${selectStyles.selectLow} ${styles.footerSelect} selectLow`}
-						selectedIndex={themeIndex}
-						onChange={changeTheme}
-					>
-						{themes.map((theme) => (
-							<Option key={theme.name}>{theme.name}</Option>
-						))}
-					</Select>
-				</div>
-				<div>
-					<input id="private" type="checkbox" />
-					<label htmlFor="private">Private</label>
-				</div>
-			</footer>
+			{albumData ? (
+				<>
+					<BuildArea albumData={albumData} />
+					<footer className={`${styles.footer} themeBordered`}>
+						<div>
+							<label htmlFor="theme">Theme</label>
+							<Select
+								id="theme"
+								className={`${selectStyles.selectLow} ${styles.footerSelect} selectLow`}
+								selectedIndex={themeIndex}
+								onChange={changeTheme}
+							>
+								{themes.map((theme) => (
+									<Option key={theme.name}>{theme.name}</Option>
+								))}
+							</Select>
+						</div>
+						{/*<div>
+							<input id="private" type="checkbox" />
+							<label htmlFor="private">Private</label>
+								</div>*/}
+					</footer>
+				</>
+			) : (
+				<Loading />
+			)}
 		</main>
 	);
 }
@@ -182,3 +184,51 @@ const ModalUnsavedChanges = () => {
 };
 
 export { ModalUnsavedChanges };
+
+export async function getServerSideProps({ query }) {
+	const { id } = query;
+
+	if (!id) {
+		return {
+			props: {},
+		};
+	}
+
+	try {
+		const client = await MongoClient.connect(process.env.MONGODB_URI);
+
+		const db = client.db();
+
+		const albumCollection = await db.collection("albums");
+		const textCollection = await db.collection("text");
+
+		const albumData = await albumCollection.findOne({ _id: ObjectId(id) });
+
+		console.log(id, albumData);
+
+		for (let s = 0; s < albumData.sections.length; s++) {
+			for (let i = 0; i < albumData.sections[s].items.length; i++) {
+				const curItem = albumData.sections[s].items[i];
+
+				curItem.value = await textCollection.findOne({
+					_id: ObjectId(curItem.value._id),
+				});
+			}
+		}
+
+		client.close();
+
+		return {
+			props: {
+				albumData: JSON.parse(JSON.stringify(albumData)),
+			},
+		};
+	} catch (e) {
+		console.error(e);
+		return {
+			props: {
+				error: e.message,
+			},
+		};
+	}
+}

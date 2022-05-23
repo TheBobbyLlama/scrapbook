@@ -9,7 +9,7 @@ import AddSection from "./AddSection";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
 
-import styles from "../styles/EditSection.module.css";
+import styles from "../styles/AlbumSection.module.css";
 
 export default function EditSection({ index }) {
 	const albumData = useSelector((state) => state.album.value);
@@ -17,7 +17,7 @@ export default function EditSection({ index }) {
 
 	return (
 		<>
-			<section className={`albumSection ${styles.editSection} themeStandard`}>
+			<section className={`albumSection ${styles.albumSection} themeStandard`}>
 				<div
 					className={`${styles.trashButton} btn`}
 					onClick={() => {
