@@ -29,6 +29,15 @@ export default function EditItem({ index, sectionIndex, data }) {
 		(item) => item.key === data.type
 	)?.displayComponent;
 
+	const postUpdate = (e) => {
+		const key = e.target.name;
+		const value = e.target.value;
+		const newItem = { ...data, [key]: value };
+		dispatch(editItem({ item: newItem, sectionIndex, itemIndex: index }));
+
+		handleChange(e);
+	};
+
 	return (
 		<>
 			<AddItem index={index} sectionIndex={sectionIndex} minimal />
@@ -54,7 +63,7 @@ export default function EditItem({ index, sectionIndex, data }) {
 						placeholder="Enter Title (optional)"
 						maxLength={50}
 						value={formData.title}
-						onChange={handleChange}
+						onChange={postUpdate}
 					/>
 				</h3>
 				<div className={`cardContent ${styles.editContent}`}>
@@ -82,7 +91,7 @@ export default function EditItem({ index, sectionIndex, data }) {
 						placeholder="Add a Caption (optional)"
 						maxLength={100}
 						value={formData.caption}
-						onChange={handleChange}
+						onChange={postUpdate}
 					/>
 				) : null}
 			</div>

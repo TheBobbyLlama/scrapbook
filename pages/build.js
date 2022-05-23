@@ -204,8 +204,6 @@ export async function getServerSideProps({ query }) {
 
 		const albumData = await albumCollection.findOne({ _id: ObjectId(id) });
 
-		console.log(id, albumData);
-
 		for (let s = 0; s < albumData.sections.length; s++) {
 			for (let i = 0; i < albumData.sections[s].items.length; i++) {
 				const curItem = albumData.sections[s].items[i];

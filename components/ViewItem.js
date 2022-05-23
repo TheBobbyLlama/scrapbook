@@ -7,8 +7,6 @@ export default function ViewItem({ data }) {
 		(item) => item.key === data.type
 	)?.displayComponent;
 
-	console.log(data);
-
 	return (
 		<div className={`albumCard ${styles.editItem} themeCard`}>
 			<h3>{data.title}</h3>
