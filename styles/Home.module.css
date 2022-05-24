@@ -50,10 +50,11 @@
 }
 
 .showFade > * {
+	color: #606060;
 	opacity: 0;
-	transition: opacity 2s ease-in-out;
 }
 
 .fadeIn {
 	opacity: 1;
+	transition: opacity 2s ease-in-out;
 }
