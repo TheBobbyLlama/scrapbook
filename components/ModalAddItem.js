@@ -42,6 +42,7 @@ const ModalAddItem = ({ index, sectionIndex }) => {
 				Add New
 				<Select
 					name="itemType"
+					aria-label="item type"
 					className="themeControl"
 					selectedIndex={formData.itemType}
 					onChange={(e) => {

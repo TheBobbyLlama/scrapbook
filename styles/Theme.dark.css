@@ -4,11 +4,11 @@
 	--theme-dark-button-disabled-text: #808080;
 	--theme-dark-card-background: #303030;
 	--theme-dark-control: #101010;
-	--theme-dark-section-cutout: #a0a0a0;
+	--theme-dark-section-cutout: #c0c0c0;
 	--theme-dark-text: #e0e0e0;
 	--theme-dark-title: var(--brand-color);
 	--theme-dark-workarea: black;
-	--theme-dark-workarea-cutout: gray;
+	--theme-dark-workarea-cutout: #a0a0a0;
 }
 
 .darkTheme .themeStandard,

@@ -147,7 +147,7 @@ export function Select({
 			className={myClass}
 			role="combobox"
 			aria-controls="customSelectOpen"
-			aria-activedescendant={open && "customSelectOpen"}
+			aria-activedescendant={open ? "customSelectOpen" : null}
 			aria-expanded={open}
 			tabIndex={0}
 			{...rest}

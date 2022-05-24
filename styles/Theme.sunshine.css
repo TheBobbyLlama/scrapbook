@@ -4,15 +4,15 @@
 	--theme-sunshine-button-disabled: #4078a0;
 	--theme-sunshine-button-disabled-text: #5098c0;
 	--theme-sunshine-card-background: #50a0d0;
-	--theme-sunshine-section-cutout: #a0d0ff;
-	--theme-sunshine-section-cutout-highlight: #b0e0ff;
+	--theme-sunshine-section-cutout: #c0e8ff;
+	--theme-sunshine-section-cutout-highlight: white;
 	--theme-sunshine-section-cutout-hover: #60a8d8;
 	--theme-sunshine-text: white;
 	--theme-sunshine-title: #ffd040;
 	--theme-sunshine-title-highlight: #ffe080;
 	--theme-sunshine-workarea: #205080;
-	--theme-sunshine-workarea-cutout: #4090c0;
-	--theme-sunshine-workarea-cutout-highlight: #80d0ff;
+	--theme-sunshine-workarea-cutout: #80d0ff;
+	--theme-sunshine-workarea-cutout-highlight: #c0e8ff;
 	--theme-sunshine-workarea-cutout-hover: #3070a0;
 }
 

@@ -130,6 +130,7 @@ export default function Build(props) {
 							<label htmlFor="theme">Theme</label>
 							<Select
 								id="theme"
+								aria-label="theme"
 								className={`${selectStyles.selectLow} ${styles.footerSelect} selectLow`}
 								selectedIndex={themeIndex}
 								onChange={changeTheme}
